@@ -7,7 +7,7 @@ public class GameController : MonoBehaviour
 {
     const int W = 8;
     const int H = 6;
-    const int Step = 4;
+    const float Step = 3.5f;
     
     [SerializeField] GameObject soilPrefab;
     
