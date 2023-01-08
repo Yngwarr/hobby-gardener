@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01ee0c2176a44e34486958535792b3c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameState: {fileID: 11400000, guid: cb1a5352e2c3c334b94355c6baa3ac34, type: 2}
   highlight: {fileID: 1998780117032698253}
 --- !u!1 &1998780117032698253
 GameObject:

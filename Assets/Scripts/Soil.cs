@@ -2,14 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [SerializeField] GameState gameState;
     [SerializeField] GameObject highlight;
     
     Vector3 _defaultScale;
+    Plant _plant;
     
     void Start() {
         _defaultScale = highlight.transform.localScale;
@@ -33,6 +36,9 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        throw new NotImplementedException();
+        if (_plant != null) return;
+        
+        var go = Instantiate(gameState.selectedSeed.grownPrefab, Vector3.zero, quaternion.identity, transform);
+        _plant = go.GetComponent<Plant>();
     }
 }

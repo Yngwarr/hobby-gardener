@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4db879231d79428f8302dc03eb2929b7, type: 3}
+  m_Name: Boommelon
+  m_EditorClassIdentifier: 
+  youngPrefab: {fileID: 919132149155446097, guid: c0de9c3697dbb404590fbe50ea844046,
+    type: 3}
+  grownPrefab: {fileID: 919132149155446097, guid: a7e6f487fad37b44783172c5d840bf92,
+    type: 3}
