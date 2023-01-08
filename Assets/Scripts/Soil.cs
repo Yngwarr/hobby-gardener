@@ -38,7 +38,10 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     public void OnPointerClick(PointerEventData eventData) {
         if (_plant != null) return;
         
-        var go = Instantiate(gameState.selectedSeed.grownPrefab, Vector3.zero, quaternion.identity, transform);
+        var go = Instantiate(
+            gameState.selectedSeed.grownPrefab,
+            transform
+        );
         _plant = go.GetComponent<Plant>();
     }
 }
