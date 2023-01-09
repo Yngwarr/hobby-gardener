@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4713438548973933909}
   - component: {fileID: 5350943336841949738}
   - component: {fileID: 4726115401555140571}
+  - component: {fileID: 50731707511227330}
   m_Layer: 5
   m_Name: PlantPanel
   m_TagString: Untagged
@@ -143,6 +144,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &50731707511227330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594286708541814530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8575fc6c0f8e4a81a8e4a35a9b388f53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 0}
+  amountLabel: {fileID: 1594286708754404894}
 --- !u!1 &1594286708754404892
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,11 +19,14 @@ public class GameController : MonoBehaviour
 
     void Awake() {
         state.Reset();
+        foreach (var p in plants) {
+            p.seedsLeft = 5;
+        }
+        
         GameEvents.SoilClicked.AddListener(OnSoilClicked);
     }
 
     void Start() {
-        state.selectedSeed = plants[Random.Range(0, plants.Length)];
         UpdateForecast();
         UpdateForecastUI();
     }
@@ -44,8 +47,6 @@ public class GameController : MonoBehaviour
 
     void Tick(bool skipDay = false) {
         _ticksPassed++;
-        // TODO remove this when the player gets to choose the seed
-        state.selectedSeed = plants[Random.Range(0, plants.Length)];
         
         if (_ticksPassed < TicksPerDay && !skipDay) return;
         

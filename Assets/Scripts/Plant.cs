@@ -10,6 +10,8 @@ public class Plant : MonoBehaviour
     
     public virtual void Spawn(Vector2Int gridPos) {
         GridPos = gridPos;
+        info.seedsLeft--;
+        GameEvents.PlantSpawned.Invoke();
     }
     
     public virtual void DayTick(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {

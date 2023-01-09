@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -43,13 +40,17 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         HideHighlight();
     }
 
-    public void OnPointerClick(PointerEventData eventData) {
-        if (!plant) {
-            Plant(gameState.selectedSeed);
-        } else {
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (plant) {
             plant.Harvest();
+        } else {
+            if (gameState.selectedSeed.seedsLeft <= 0) {
+                return;
+            }
+            Plant(gameState.selectedSeed);
         }
-        
+
         GameEvents.SoilClicked.Invoke();
     }
     
