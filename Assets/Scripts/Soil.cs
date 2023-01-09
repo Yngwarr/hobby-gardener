@@ -11,7 +11,7 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] GameState gameState;
     [SerializeField] GameObject highlight;
     
-    public Vector2 gridPos;
+    public Vector2Int gridPos;
     
     Vector3 _defaultScale;
     public Plant plant { get; private set; }
@@ -29,10 +29,10 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         highlight.transform.DOScale(0, .2f);
     }
 
-    public void DayTick(Func<int, int, Soil> neighbor) {
+    public void DayTick(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
         if (plant == null) return;
         
-        plant.DayTick(neighbor);
+        plant.DayTick(weather, neighbor);
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
@@ -45,16 +45,21 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
     public void OnPointerClick(PointerEventData eventData) {
         if (plant == null) {
-            var go = Instantiate(
-                gameState.selectedSeed.plantPrefab,
-                transform
-            );
-            plant = go.GetComponent<Plant>();
-            plant.Spawn();
+            Plant(gameState.selectedSeed);
         } else {
             plant.Harvest();
         }
         
         GameEvents.SoilClicked.Invoke();
+    }
+    
+    public void Plant(PlantInfo info) {
+        // TODO utilize the current plant if plant != null
+        var go = Instantiate(
+            info.plantPrefab,
+            transform
+        );
+        plant = go.GetComponent<Plant>();
+        plant.Spawn(gridPos);
     }
 }

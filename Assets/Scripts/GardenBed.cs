@@ -22,20 +22,24 @@ public class GardenBed : MonoBehaviour
                     transform
                 );
                 var soil = go.GetComponent<Soil>();
-                soil.gridPos = new Vector2(x, y);
+                soil.gridPos = new Vector2Int(x, y);
                 SetSoil(x, y, soil);
             }
         }
     }
     
-    public void DayTick() {
+    public void DayTick(Weather weather) {
         foreach (var soil in _soils) {
-            soil.DayTick(GetSoil);
+            soil.DayTick(weather, GetNeighbor);
         }
     }
     
     void SetSoil(int x, int y, Soil soil) {
         _soils[y + x * H] = soil;
+    }
+    
+    Soil GetNeighbor(Vector2Int pos, int xOffset, int yOffset) {
+        return GetSoil(pos.x + xOffset, pos.y + yOffset);
     }
     
     Soil GetSoil(int x, int y) {

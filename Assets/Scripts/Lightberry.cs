@@ -19,23 +19,41 @@ public class Lightberry : Plant
     int _timeToGrow = TTG;
     int _fruitNum = 3;
     
-    public override void Spawn() {
-        base.Spawn();
+    public override void Spawn(Vector2Int gridPos) {
+        base.Spawn(gridPos);
             
         youngView.transform.DOScale(Vector3.zero, .5f).From().SetEase(Ease.OutBounce);
     }
     
-    public override void DayTick(Func<int, int, Soil> neighbor) {
-        base.DayTick(neighbor);
-        
-        if (_state != State.Growing) return;
-        
-        if (_timeToGrow > 0) {
-            _timeToGrow--;
-            return;
+    public override void DayTick(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
+        base.DayTick(weather, neighbor);
+
+        switch (_state) {
+            case State.Growing:
+                if (_timeToGrow > 0) {
+                    _timeToGrow--;
+                    return;
+                }
+                
+                Grow();
+                break;
+            case State.Grown:
+                ApplyWind(weather, neighbor);
+                break;
         }
+    }
+    
+    void ApplyWind(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
+        if ((int)(weather & Weather.Windy) == 0) return;
         
-        Grow();
+        var dir = Tools.WindDirection(weather);
+        var n = neighbor(GridPos, dir.x, dir.y);
+        
+        if (n == null) return;
+        if (n.plant != null) return;
+        
+        n.Plant(info);
+        Harvest();
     }
     
     void Grow() {

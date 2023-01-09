@@ -15,23 +15,33 @@ public class GameController : MonoBehaviour
     int _ticksPassed;
 
     void Awake() {
-        GameEvents.SoilClicked.AddListener(Tick);
+        GameEvents.SoilClicked.AddListener(OnSoilClicked);
     }
 
     void Start() {
         state.selectedSeed = plants[Random.Range(0, plants.Length)];
         UpdateForecast();
     }
+
+    void Update() {
+        if (Input.GetButtonUp("Jump")) {
+            Tick(true);
+        }
+    }
     
-    void Tick() {
+    void OnSoilClicked() {
+        Tick();
+    }
+
+    void Tick(bool skipDay = false) {
         _ticksPassed++;
         // TODO remove this when the player gets to choose the seed
         state.selectedSeed = plants[Random.Range(0, plants.Length)];
         
-        if (_ticksPassed < 2) return;
+        if (_ticksPassed < 2 && !skipDay) return;
         
         _ticksPassed = 0;
-        gardenBed.DayTick();
+        gardenBed.DayTick(state.forecast.Peek());
         
         state.forecast.Dequeue();
         UpdateForecast();
@@ -45,5 +55,6 @@ public class GameController : MonoBehaviour
             // TODO make something more predictable
             state.forecast.Enqueue(Tools.RandomWeather());
         }
+        Debug.Log($"{state.forecast.Peek()}");
     }
 }

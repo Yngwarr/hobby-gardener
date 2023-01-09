@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e3f3d84c7f4236857889fb3a924c43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  info: {fileID: 11400000, guid: cc153a1ae020bee49abe2d20b394a0e6, type: 2}
   youngView: {fileID: 4464751386743635215}
   grownView: {fileID: 3080040854776374405}
 --- !u!1001 &2774192113211922900
