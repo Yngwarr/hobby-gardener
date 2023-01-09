@@ -6,8 +6,9 @@ using UnityEngine;
 public class GameState : ScriptableObject
 {
     public PlantInfo selectedSeed;
-    public Queue<Weather> forecast = new();
     public int currentDay;
+    public Queue<Weather> forecast = new();
+    public List<Quest> quests = new();
 
     public void Reset() {
         selectedSeed = null;

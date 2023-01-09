@@ -23,6 +23,10 @@ public class GameController : MonoBehaviour
             p.seedsLeft = 5;
         }
         
+        for (var i = 0; i < 3; ++i) {
+            state.quests.Add(new Quest(plants));
+        }
+        
         GameEvents.SoilClicked.AddListener(OnSoilClicked);
     }
 

@@ -69,7 +69,8 @@ MonoBehaviour:
   m_text: 10 booms
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 79017843896c7544fba7b08fcba4704e, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 4975231840667826180, guid: 79017843896c7544fba7b08fcba4704e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -145,6 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5206738891698595088}
   - component: {fileID: 966485359115150898}
+  - component: {fileID: 7063511625779669367}
   m_Layer: 5
   m_Name: Quest
   m_TagString: Untagged
@@ -193,6 +195,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &7063511625779669367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6211828713111628859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 597013d508dc453ca7d798071159c26b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: {fileID: 8527665944213905332}
 --- !u!1 &6783930073816190522
 GameObject:
   m_ObjectHideFlags: 0
