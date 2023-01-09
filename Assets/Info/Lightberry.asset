@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db879231d79428f8302dc03eb2929b7, type: 3}
   m_Name: Lightberry
   m_EditorClassIdentifier: 
-  youngPrefab: {fileID: 919132149155446097, guid: 4b60f307fe86bb94db8e6ed1adab5b43,
-    type: 3}
-  grownPrefab: {fileID: 919132149155446097, guid: 6aaf1a598343eb44284e33a463dfea6e,
+  plantPrefab: {fileID: 1825363636515883153, guid: 096948b991961314b8777046629a0ad8,
     type: 3}

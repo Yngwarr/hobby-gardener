@@ -3,6 +3,5 @@
 [CreateAssetMenu]
 public class PlantInfo : ScriptableObject
 {
-    public GameObject youngPrefab;
-    public GameObject grownPrefab;
+    public GameObject plantPrefab;
 }

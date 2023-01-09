@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    public void Tick() {}
-    public void Harvest() {}
+    public virtual void Spawn() {}
+    public virtual void Tick(Func<int, int, Soil> neighbor) {}
+    public virtual void Harvest() {}
 }

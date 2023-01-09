@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db879231d79428f8302dc03eb2929b7, type: 3}
   m_Name: Bamboo
   m_EditorClassIdentifier: 
-  youngPrefab: {fileID: 919132149155446097, guid: 10ddcfb41b2c8ac429e7466667e8655d,
-    type: 3}
-  grownPrefab: {fileID: 919132149155446097, guid: 0c680eaecfec28b40bfc0a61ec7d6315,
+  plantPrefab: {fileID: 919132149155446097, guid: 10ddcfb41b2c8ac429e7466667e8655d,
     type: 3}

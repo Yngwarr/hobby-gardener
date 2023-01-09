@@ -7,8 +7,18 @@ public class GameController : MonoBehaviour
     [SerializeField] GameState state;
     // TODO find a way to populate it from code
     [SerializeField] PlantInfo[] plants;
+    [SerializeField] GardenBed gardenBed;
+
+    void Awake() {
+        GameEvents.SoilClicked.AddListener(Tick);
+    }
 
     void Start() {
+        state.selectedSeed = plants[Random.Range(0, plants.Length)];
+    }
+    
+    void Tick() {
+        gardenBed.Tick();
         state.selectedSeed = plants[Random.Range(0, plants.Length)];
     }
 }

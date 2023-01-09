@@ -247,14 +247,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_LocalRotation: {x: 0.45174244, y: -0, z: -0, w: 0.89214844}
-  m_LocalPosition: {x: 13.36, y: 18.38, z: -7.3}
+  m_LocalRotation: {x: 0.5986359, y: -0, z: -0, w: 0.80102134}
+  m_LocalPosition: {x: 12.5, y: 20.69, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 53.711, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 73.545, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -680,7 +680,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: cb1a5352e2c3c334b94355c6baa3ac34, type: 2}
   plants:
-  - {fileID: 11400000, guid: 7fef9773fcdedc547959388c03884a86, type: 2}
-  - {fileID: 11400000, guid: 9abe32ea0e4d47f42839642f0afb482e, type: 2}
-  - {fileID: 11400000, guid: 3bb7147c44e90f3429b6a1d62d3c6478, type: 2}
   - {fileID: 11400000, guid: cc153a1ae020bee49abe2d20b394a0e6, type: 2}
+  gardenBed: {fileID: 116389076}

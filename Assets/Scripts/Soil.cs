@@ -11,8 +11,10 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     [SerializeField] GameState gameState;
     [SerializeField] GameObject highlight;
     
+    public Vector2 gridPos;
+    
     Vector3 _defaultScale;
-    Plant _plant;
+    public Plant plant { get; private set; }
     
     void Start() {
         _defaultScale = highlight.transform.localScale;
@@ -27,6 +29,12 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         highlight.transform.DOScale(0, .2f);
     }
 
+    public void Tick(Func<int, int, Soil> neighbor) {
+        if (plant == null) return;
+        
+        plant.Tick(neighbor);
+    }
+
     public void OnPointerEnter(PointerEventData eventData) {
         ShowHighlight();
     }
@@ -36,12 +44,17 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        if (_plant != null) return;
+        if (plant == null) {
+            var go = Instantiate(
+                gameState.selectedSeed.plantPrefab,
+                transform
+            );
+            plant = go.GetComponent<Plant>();
+            plant.Spawn();
+        } else {
+            plant.Harvest();
+        }
         
-        var go = Instantiate(
-            gameState.selectedSeed.grownPrefab,
-            transform
-        );
-        _plant = go.GetComponent<Plant>();
+        GameEvents.SoilClicked.Invoke();
     }
 }

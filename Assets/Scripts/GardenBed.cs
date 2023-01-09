@@ -21,8 +21,16 @@ public class GardenBed : MonoBehaviour
                     Quaternion.identity,
                     transform
                 );
-                SetSoil(x, y, go.GetComponent<Soil>());
+                var soil = go.GetComponent<Soil>();
+                soil.gridPos = new Vector2(x, y);
+                SetSoil(x, y, soil);
             }
+        }
+    }
+    
+    public void Tick() {
+        foreach (var soil in _soils) {
+            soil.Tick(GetSoil);
         }
     }
     
@@ -31,6 +39,9 @@ public class GardenBed : MonoBehaviour
     }
     
     Soil GetSoil(int x, int y) {
+        if (x < 0 || x >= W) return null;
+        if (y < 0 || y >= H) return null;
+        
         return _soils[y + x * H];
     }
 }
