@@ -28,9 +28,9 @@ public class GardenBed : MonoBehaviour
         }
     }
     
-    public void Tick() {
+    public void DayTick() {
         foreach (var soil in _soils) {
-            soil.Tick(GetSoil);
+            soil.DayTick(GetSoil);
         }
     }
     

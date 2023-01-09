@@ -25,8 +25,8 @@ public class Lightberry : Plant
         youngView.transform.DOScale(Vector3.zero, .5f).From().SetEase(Ease.OutBounce);
     }
     
-    public override void Tick(Func<int, int, Soil> neighbor) {
-        base.Tick(neighbor);
+    public override void DayTick(Func<int, int, Soil> neighbor) {
+        base.DayTick(neighbor);
         
         if (_state != State.Growing) return;
         

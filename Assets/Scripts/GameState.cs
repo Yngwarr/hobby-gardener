@@ -6,10 +6,13 @@ using UnityEngine;
 public class GameState : ScriptableObject
 {
     public PlantInfo selectedSeed;
-    public Queue<Weather> forecast;
+    public Queue<Weather> forecast = new();
+    public int currentDay = 0;
 
     void Reset() {
         selectedSeed = null;
+        forecast.Clear();
+        currentDay = 0;
     }
 
     void Awake() {

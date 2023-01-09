@@ -29,10 +29,10 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         highlight.transform.DOScale(0, .2f);
     }
 
-    public void Tick(Func<int, int, Soil> neighbor) {
+    public void DayTick(Func<int, int, Soil> neighbor) {
         if (plant == null) return;
         
-        plant.Tick(neighbor);
+        plant.DayTick(neighbor);
     }
 
     public void OnPointerEnter(PointerEventData eventData) {
