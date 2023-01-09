@@ -12,7 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] PlantInfo[] plants;
     [SerializeField] GardenBed gardenBed;
     
-    int ticksPassed = 0;
+    int _ticksPassed;
 
     void Awake() {
         GameEvents.SoilClicked.AddListener(Tick);
@@ -20,17 +20,22 @@ public class GameController : MonoBehaviour
 
     void Start() {
         state.selectedSeed = plants[Random.Range(0, plants.Length)];
+        UpdateForecast();
     }
     
     void Tick() {
-        ticksPassed++;
+        _ticksPassed++;
         // TODO remove this when the player gets to choose the seed
         state.selectedSeed = plants[Random.Range(0, plants.Length)];
         
-        if (ticksPassed < 2) return;
+        if (_ticksPassed < 2) return;
         
-        ticksPassed = 0;
+        _ticksPassed = 0;
         gardenBed.DayTick();
+        
+        state.forecast.Dequeue();
+        UpdateForecast();
+        
         state.currentDay++;
         GameEvents.DayPassed.Invoke();
     }

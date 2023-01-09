@@ -7,7 +7,7 @@ public class GameState : ScriptableObject
 {
     public PlantInfo selectedSeed;
     public Queue<Weather> forecast = new();
-    public int currentDay = 0;
+    public int currentDay;
 
     void Reset() {
         selectedSeed = null;
