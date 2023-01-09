@@ -8,8 +8,6 @@ public class GameController : MonoBehaviour
     const int TicksPerDay = 2;
     
     [SerializeField] GameState state;
-    // TODO find a way to populate it from code
-    [SerializeField] PlantInfo[] plants;
     [SerializeField] GardenBed gardenBed;
     
     [Header("UI")]
@@ -19,12 +17,12 @@ public class GameController : MonoBehaviour
 
     void Awake() {
         state.Reset();
-        foreach (var p in plants) {
+        foreach (var p in state.plants) {
             p.seedsLeft = 5;
         }
         
         for (var i = 0; i < 3; ++i) {
-            state.quests.Add(new Quest(plants));
+            state.quests.Add(new Quest(state.plants));
         }
         
         GameEvents.SoilClicked.AddListener(OnSoilClicked);

@@ -13,8 +13,11 @@ public class PlantOptionButton : MonoBehaviour
     
     public PlantInfo Info => info;
 
-    void Start() {
+    void Awake() {
         _button = GetComponent<Button>();
+    }
+
+    void Start() {
         UpdateText();
         GameEvents.Planted.AddListener(UpdateText);
     }

@@ -4,15 +4,15 @@ using Random = UnityEngine.Random;
 
 public class Quest
 {
-    public PlantInfo Plant;
-    public int TargetAmount;
+    public PlantInfo plant;
+    public int targetAmount;
     
     public Quest(IReadOnlyList<PlantInfo> plants) {
-        TargetAmount = Mathf.FloorToInt(Random.value * Random.value / 2 * 10 + 1);
-        Plant = plants[Random.Range(0, plants.Count)];
+        targetAmount = Mathf.FloorToInt(Random.value * Random.value / 2 * 10 + 1);
+        plant = plants[Random.Range(0, plants.Count)];
     }
     
     public override string ToString() {
-        return $"{TargetAmount} of {Plant.name}";
+        return $"{targetAmount} of {plant.name}";
     }
 }

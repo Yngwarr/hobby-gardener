@@ -80,10 +80,9 @@ public class Boommelon : Plant
     }
 
     public override void Harvest() {
-        base.Harvest();
-        
         if (_state != State.Grown) return;
         // TODO add score
         Destroy(gameObject);
+        base.Harvest();
     }
 }

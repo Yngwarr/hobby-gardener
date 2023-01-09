@@ -16,5 +16,7 @@ public class Plant : MonoBehaviour
         immuneToWind = false;
     }
     
-    public virtual void Harvest() {}
+    public virtual void Harvest() {
+        GameEvents.PlantHarvested.Invoke(info);
+    }
 }

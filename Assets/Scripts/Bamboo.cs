@@ -69,12 +69,12 @@ public class Bamboo : Plant
     }
 
     public override void Harvest() {
-        base.Harvest();
-        
         if (_state != State.Grown) return;
         // TODO add score
         _state = State.Growing;
         _timeToGrow = TTG;
         grownView.SetActive(false);
+        
+        base.Harvest();
     }
 }

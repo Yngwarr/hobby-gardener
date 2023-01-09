@@ -67,8 +67,6 @@ public class Lightberry : Plant
     }
 
     public override void Harvest() {
-        base.Harvest();
-        
         if (_state != State.Grown) return;
         
         // TODO add to the total score
@@ -86,5 +84,7 @@ public class Lightberry : Plant
         _timeToGrow = TTG;
         // TODO add some particle effect
         grownView.SetActive(false);
+        
+        base.Harvest();
     }
 }
