@@ -19,7 +19,7 @@ public class PlantOptionButton : MonoBehaviour
 
     void Start() {
         UpdateText();
-        GameEvents.Planted.AddListener(UpdateText);
+        GameEvents.SeedAmountChanged.AddListener(UpdateText);
     }
     
     void UpdateText() {

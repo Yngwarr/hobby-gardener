@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class QuestBoard : MonoBehaviour
 {
@@ -25,7 +26,12 @@ public class QuestBoard : MonoBehaviour
             }
             
             gameState.quests[i].targetAmount--;
+            
             if (gameState.quests[i].targetAmount != 0) break;
+            
+            gameState.plants[Random.Range(0, gameState.plants.Length)].seedsLeft += Random.Range(2, 6);
+            GameEvents.SeedAmountChanged.Invoke();
+            
             gameState.quests[i] = new Quest(gameState.plants);
         }
         

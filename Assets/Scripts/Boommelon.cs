@@ -12,8 +12,8 @@ public class Boommelon : Plant
     [SerializeField] GameObject youngView;
     [SerializeField] GameObject grownView;
     
-    const int TTG = 5;
-    const int TTE = 2;
+    const int TTG = 4;
+    const int TTE = 1;
     
     State _state = State.Growing;
     int _timeToGrow = TTG;

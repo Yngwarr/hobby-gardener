@@ -48,15 +48,15 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
             if (gameState.selectedSeed.seedsLeft <= 0) {
                 return;
             }
-            Plant(gameState.selectedSeed);
+            Plant(gameState.selectedSeed, true);
         }
 
         GameEvents.SoilClicked.Invoke();
     }
     
-    public void Plant(PlantInfo info) {
+    public void Plant(PlantInfo info, bool playerInteraction = false) {
         if (plant) {
-            Destroy(plant);
+            Destroy(plant.gameObject);
         }
     
         var go = Instantiate(
@@ -66,7 +66,9 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         plant = go.GetComponent<Plant>();
         plant.Spawn(gridPos);
         
-        info.seedsLeft--;
-        GameEvents.Planted.Invoke();
+        if (playerInteraction) {
+            info.seedsLeft--;
+            GameEvents.SeedAmountChanged.Invoke();
+        }
     }
 }
