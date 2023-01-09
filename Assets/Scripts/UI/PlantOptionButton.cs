@@ -16,7 +16,7 @@ public class PlantOptionButton : MonoBehaviour
     void Start() {
         _button = GetComponent<Button>();
         UpdateText();
-        GameEvents.PlantSpawned.AddListener(UpdateText);
+        GameEvents.Planted.AddListener(UpdateText);
     }
     
     void UpdateText() {

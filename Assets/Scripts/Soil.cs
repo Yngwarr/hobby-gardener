@@ -65,5 +65,8 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
         );
         plant = go.GetComponent<Plant>();
         plant.Spawn(gridPos);
+        
+        info.seedsLeft--;
+        GameEvents.Planted.Invoke();
     }
 }
