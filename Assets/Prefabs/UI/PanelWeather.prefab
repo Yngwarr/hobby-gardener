@@ -291,7 +291,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977861362085322281}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -300,12 +300,12 @@ RectTransform:
   - {fileID: 8854400601142084941}
   - {fileID: 5569337296866418265}
   - {fileID: 4011143474376338121}
-  m_Father: {fileID: 8650951729625960428}
-  m_RootOrder: 0
+  m_Father: {fileID: 8941445224354669926}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0007143, y: -76.50613}
+  m_AnchoredPosition: {x: -8.626203, y: -76.209114}
   m_SizeDelta: {x: 120.02, y: 55.6199}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &3528537997584144546
@@ -565,8 +565,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 414015210749049410}
+  m_Children: []
   m_Father: {fileID: 5364496507647884370}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -836,6 +835,7 @@ GameObject:
   - component: {fileID: 8941445224354669924}
   - component: {fileID: 8941445224354669925}
   - component: {fileID: -3523617639000025727}
+  - component: {fileID: 8464924598847598973}
   m_Layer: 5
   m_Name: PanelWeather
   m_TagString: Untagged
@@ -857,6 +857,7 @@ RectTransform:
   m_Children:
   - {fileID: 8941445224134661393}
   - {fileID: 5364496507647884370}
+  - {fileID: 414015210749049410}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -923,3 +924,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &8464924598847598973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8941445224354669927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce3fa8bcd8a4ea9a22b701edf3e70ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloud: {fileID: 1211399777194378810}
+  rain: {fileID: 442064324851249266}
+  sun: {fileID: 4282966640230500343}
+  wind: {fileID: 6845559152438728742}

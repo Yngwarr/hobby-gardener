@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour
     [SerializeField] PlantInfo[] plants;
     [SerializeField] GardenBed gardenBed;
     
+    [Header("UI")]
+    [SerializeField] WeatherPanel[] forecastPanels;
+    
     int _ticksPassed;
 
     void Awake() {
@@ -22,16 +25,21 @@ public class GameController : MonoBehaviour
     void Start() {
         state.selectedSeed = plants[Random.Range(0, plants.Length)];
         UpdateForecast();
+        UpdateForecastUI();
     }
 
     void Update() {
         if (Input.GetButtonUp("Jump")) {
-            Tick(true);
+            SkipDay();
         }
     }
     
     void OnSoilClicked() {
         Tick();
+    }
+    
+    public void SkipDay() {
+        Tick(true);
     }
 
     void Tick(bool skipDay = false) {
@@ -39,13 +47,14 @@ public class GameController : MonoBehaviour
         // TODO remove this when the player gets to choose the seed
         state.selectedSeed = plants[Random.Range(0, plants.Length)];
         
-        if (_ticksPassed < 2 && !skipDay) return;
+        if (_ticksPassed < TicksPerDay && !skipDay) return;
         
         _ticksPassed = 0;
         gardenBed.DayTick(state.forecast.Peek());
         
         state.forecast.Dequeue();
         UpdateForecast();
+        UpdateForecastUI();
         
         state.currentDay++;
         GameEvents.DayPassed.Invoke();
@@ -71,5 +80,14 @@ public class GameController : MonoBehaviour
         // state.forecast.Enqueue(Weather.Sunny);
         
         Debug.Log($"{state.forecast.Peek()}");
+    }
+    
+    void UpdateForecastUI() {
+        var i = 0;
+        foreach (var w in state.forecast) {
+            if (i >= forecastPanels.Length) break;
+            forecastPanels[i].SetWeather(w);
+            ++i;
+        }
     }
 }
