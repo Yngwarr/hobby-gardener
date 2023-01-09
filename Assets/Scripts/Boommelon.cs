@@ -13,11 +13,9 @@ public class Boommelon : Plant
     [SerializeField] GameObject grownView;
     
     const int TTG = 4;
-    const int TTE = 1;
     
     State _state = State.Growing;
     int _timeToGrow = TTG;
-    int _timeToExplosion = TTE;
 
     public override void Spawn(Vector2Int gridPos) {
         base.Spawn(gridPos);
@@ -53,15 +51,7 @@ public class Boommelon : Plant
     }
     
     void ApplySun(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
-        if (weather != Weather.Sunny) {
-            _timeToExplosion = TTE;
-            return;
-        }
-        
-        if (_timeToExplosion > 0) {
-            _timeToExplosion--;
-            return;
-        }
+        if (weather != Weather.Sunny) return;
         
         var ns = new[] {
             neighbor(GridPos, 0, -1),

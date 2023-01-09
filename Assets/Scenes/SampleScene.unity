@@ -2551,11 +2551,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: cb1a5352e2c3c334b94355c6baa3ac34, type: 2}
-  plants:
-  - {fileID: 11400000, guid: cc153a1ae020bee49abe2d20b394a0e6, type: 2}
-  - {fileID: 11400000, guid: 7fef9773fcdedc547959388c03884a86, type: 2}
-  - {fileID: 11400000, guid: 3bb7147c44e90f3429b6a1d62d3c6478, type: 2}
-  - {fileID: 11400000, guid: 9abe32ea0e4d47f42839642f0afb482e, type: 2}
   gardenBed: {fileID: 116389076}
   forecastPanels:
   - {fileID: 2041039260}
@@ -4461,6 +4456,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1169084777}
     m_Modifications:
+    - target: {fileID: 2401620177017131004, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401620177017131004, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401620177017131004, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401620177017131004, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2401620177030934077, guid: c95f55af4973dc442bacf244e57fc163,
         type: 3}
       propertyPath: m_Name
@@ -4569,6 +4584,26 @@ PrefabInstance:
     - target: {fileID: 2401620177030934078, guid: c95f55af4973dc442bacf244e57fc163,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401620178181354084, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401620178181354084, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401620178181354084, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2401620178181354084, guid: c95f55af4973dc442bacf244e57fc163,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

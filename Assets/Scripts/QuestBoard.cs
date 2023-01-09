@@ -20,12 +20,10 @@ public class QuestBoard : MonoBehaviour
     
     void PlantHarvested(PlantInfo info) {
         for (var i = 0; i < gameState.quests.Count; ++i) {
-            if (gameState.quests[i].plant != info) {
-                Debug.Log($"{gameState.quests[i].plant.name} != {info.name}");
-                continue;
-            }
+            if (gameState.quests[i].plant != info) continue;
             
             gameState.quests[i].targetAmount--;
+            gameState.Exp += 5;
             
             if (gameState.quests[i].targetAmount != 0) break;
             

@@ -10,6 +10,15 @@ public class GameState : ScriptableObject
     public int currentDay;
     public Queue<Weather> forecast = new();
     public List<Quest> quests = new();
+    
+    int _exp;
+    public int Exp {
+        get => _exp;
+        set {
+            _exp = value;
+            GameEvents.ExpChanged.Invoke(_exp);
+        }
+    }
 
     public void Reset() {
         selectedSeed = null;
