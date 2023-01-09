@@ -8,18 +8,27 @@ public class WeatherPanel : MonoBehaviour
     [SerializeField] GameObject sun;
     [SerializeField] GameObject wind;
     
+    [Header("Arrows")]
+    [SerializeField] GameObject up;
+    [SerializeField] GameObject down;
+    [SerializeField] GameObject left;
+    [SerializeField] GameObject right;
+    
     Weather _current;
     
-    void Start() {
-        cloud.SetActive(false);
-        rain.SetActive(false);
-        sun.SetActive(false);
-        wind.SetActive(false);
-    }
-    
     public void SetWeather(Weather weather) {
+        if (_current == weather) return;
+        
         GetIcon(_current).SetActive(false);
         GetIcon(weather).SetActive(true);
+        
+        if ((_current & Weather.Windy) != 0) {
+            GetWindIcon(_current).SetActive(false);
+        }
+        if ((weather & Weather.Windy) != 0) {
+            GetWindIcon(weather).SetActive(true);
+        }
+        
         _current = weather;
     }
     
@@ -31,6 +40,16 @@ public class WeatherPanel : MonoBehaviour
             Weather.Rain => rain,
             Weather.Sunny => sun,
             _ => cloud
+        };
+    }
+    
+    GameObject GetWindIcon(Weather weather) {
+        return weather switch {
+            Weather.WindN => down,
+            Weather.WindS => up,
+            Weather.WindE => left,
+            Weather.WindW => right,
+            _ => null
         };
     }
 }
