@@ -15,6 +15,7 @@ public class GameController : MonoBehaviour
     int _ticksPassed;
 
     void Awake() {
+        state.Reset();
         GameEvents.SoilClicked.AddListener(OnSoilClicked);
     }
 

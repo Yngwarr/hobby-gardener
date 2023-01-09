@@ -29,9 +29,25 @@ public class GardenBed : MonoBehaviour
     }
     
     public void DayTick(Weather weather) {
+        var bamboos = new Queue<Soil>();
+        var berries = new Queue<Soil>();
+        
         foreach (var soil in _soils) {
-            soil.DayTick(weather, GetNeighbor);
+            if (soil == null) continue;
+            if (soil.plant == null) continue;
+            
+            switch (soil.plant) {
+                case Bamboo:
+                    bamboos.Enqueue(soil);
+                    break;
+                case Lightberry:
+                    berries.Enqueue(soil);
+                    break;
+            }
         }
+
+        foreach (var soil in bamboos) soil.DayTick(weather, GetNeighbor);
+        foreach (var soil in berries) soil.DayTick(weather, GetNeighbor);
     }
     
     void SetSoil(int x, int y, Soil soil) {

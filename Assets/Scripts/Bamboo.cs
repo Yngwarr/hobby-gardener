@@ -2,29 +2,28 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Lightberry : Plant
+public class Bamboo : Plant
 {
     enum State {
         Growing,
-        Grown,
-        Dead
+        Grown
     }
     
     [SerializeField] GameObject youngView;
     [SerializeField] GameObject grownView;
     
-    const int TTG = 3;
+    const int TTG = 5;
     
     State _state = State.Growing;
     int _timeToGrow = TTG;
-    int _fruitNum = 3;
-    
+
     public override void Spawn(Vector2Int gridPos) {
         base.Spawn(gridPos);
-            
-        youngView.transform.DOScale(Vector3.zero, .5f).From().SetEase(Ease.OutBounce);
+        
+        youngView.transform.DOScale(new Vector3(1, 0, 1), .5f).From()
+            .SetEase(Ease.OutBounce);
     }
-    
+
     public override void DayTick(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
         switch (_state) {
             case State.Growing:
@@ -36,26 +35,11 @@ public class Lightberry : Plant
                 Grow();
                 break;
             case State.Grown:
-                ApplyWind(weather, neighbor);
+                ApplyWindShield(weather, neighbor);
                 break;
         }
         
         base.DayTick(weather, neighbor);
-    }
-    
-    void ApplyWind(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
-        if ((int)(weather & Weather.Windy) == 0) return;
-        if (immuneToWind) return;
-        
-        var dir = Tools.WindDirection(weather);
-        var n = neighbor(GridPos, dir.x, dir.y);
-        
-        Harvest();
-        
-        if (n == null) return;
-        if (n.plant == null) {
-            n.Plant(info);
-        } 
     }
     
     void Grow() {
@@ -63,7 +47,25 @@ public class Lightberry : Plant
         
         _state = State.Grown;
         grownView.SetActive(true);
-        grownView.transform.DOScale(Vector3.zero, .5f).From().SetEase(Ease.OutBounce);
+        grownView.transform.DOScale(new Vector3(1, 0, 1), .7f).From()
+            .SetEase(Ease.OutQuad);
+    }
+    
+    void ApplyWindShield(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
+        if ((int)(weather & Weather.Windy) == 0) return;
+        
+        var dir = Tools.WindDirection(weather);
+        var ns = new[] {
+            neighbor(GridPos, dir.x, dir.y),
+            neighbor(GridPos, dir.x * 2, dir.y * 2)
+        };
+        
+        foreach (var n in ns) {
+            if (n == null) continue;
+            if (n.plant == null) continue;
+            
+            n.plant.immuneToWind = true;
+        }
     }
 
     public override void Harvest() {
@@ -71,20 +73,8 @@ public class Lightberry : Plant
         
         if (_state != State.Grown) return;
         
-        // TODO add to the total score
-        _fruitNum--;
-        
-        if (_fruitNum == 0) {
-            _state = State.Dead;
-            // TODO set correct visuals
-            grownView.SetActive(false);
-            youngView.transform.DOScaleX(1, .3f);
-            return;
-        }
-        
         _state = State.Growing;
         _timeToGrow = TTG;
-        // TODO add some particle effect
         grownView.SetActive(false);
     }
 }

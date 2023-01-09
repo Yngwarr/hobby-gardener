@@ -9,13 +9,9 @@ public class GameState : ScriptableObject
     public Queue<Weather> forecast = new();
     public int currentDay;
 
-    void Reset() {
+    public void Reset() {
         selectedSeed = null;
         forecast.Clear();
         currentDay = 0;
-    }
-
-    void Awake() {
-        Reset();
     }
 }
