@@ -72,6 +72,7 @@ public class Boommelon : Plant
 
         foreach (var n in ns) {
             if (!n) continue;
+            if (n.plant is Cactumber) continue;
             n.Plant(info);
         }
         

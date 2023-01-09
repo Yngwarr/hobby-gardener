@@ -18,6 +18,7 @@ public class Cactumber : Plant
     
     State _state = State.Growing;
     int _timeToGrow = TTG;
+    bool gaveBirth;
 
     public override void Spawn(Vector2Int gridPos) {
         base.Spawn(gridPos);
@@ -53,6 +54,7 @@ public class Cactumber : Plant
     
     void ApplyRain(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
         if (weather != Weather.Rain) return;
+        if (gaveBirth) return;
         
         var ns = new[] {
             neighbor(GridPos, 0, -1),
@@ -63,12 +65,15 @@ public class Cactumber : Plant
 
         var empty = new List<Soil>();
         foreach (var n in ns) {
-            if (n) continue;
+            if (!n) continue;
+            if (n.plant) continue;
             empty.Add(n);
         }
         
         if (empty.Count == 0) return;
+        
         empty[Random.Range(0, empty.Count)].Plant(info);
+        gaveBirth = true;
     }
 
     public override void Harvest() {
