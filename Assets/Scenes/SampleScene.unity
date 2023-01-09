@@ -1680,8 +1680,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: {fileID: 11400000, guid: cb1a5352e2c3c334b94355c6baa3ac34, type: 2}
   plants:
-  - {fileID: 11400000, guid: cc153a1ae020bee49abe2d20b394a0e6, type: 2}
+  - {fileID: 11400000, guid: 9abe32ea0e4d47f42839642f0afb482e, type: 2}
   - {fileID: 11400000, guid: 7fef9773fcdedc547959388c03884a86, type: 2}
+  - {fileID: 11400000, guid: cc153a1ae020bee49abe2d20b394a0e6, type: 2}
+  - {fileID: 11400000, guid: 3bb7147c44e90f3429b6a1d62d3c6478, type: 2}
   gardenBed: {fileID: 116389076}
 --- !u!1001 &1659806663
 PrefabInstance:

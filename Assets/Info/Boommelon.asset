@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db879231d79428f8302dc03eb2929b7, type: 3}
   m_Name: Boommelon
   m_EditorClassIdentifier: 
-  plantPrefab: {fileID: 919132149155446097, guid: c0de9c3697dbb404590fbe50ea844046,
+  plantPrefab: {fileID: 1825363636515883153, guid: fd44275b9948fec4db962ff0e5944b01,
     type: 3}

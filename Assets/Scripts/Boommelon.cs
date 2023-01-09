@@ -2,29 +2,29 @@
 using DG.Tweening;
 using UnityEngine;
 
-public class Lightberry : Plant
+public class Boommelon : Plant
 {
     enum State {
         Growing,
-        Grown,
-        Dead
+        Grown
     }
     
     [SerializeField] GameObject youngView;
     [SerializeField] GameObject grownView;
     
-    const int TTG = 3;
+    const int TTG = 5;
+    const int TTE = 2;
     
     State _state = State.Growing;
     int _timeToGrow = TTG;
-    int _fruitNum = 3;
-    
+    int _timeToExplosion = TTE;
+
     public override void Spawn(Vector2Int gridPos) {
         base.Spawn(gridPos);
-            
+        
         youngView.transform.DOScale(Vector3.zero, .5f).From().SetEase(Ease.OutBounce);
     }
-    
+
     public override void DayTick(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
         switch (_state) {
             case State.Growing:
@@ -36,55 +36,53 @@ public class Lightberry : Plant
                 Grow();
                 break;
             case State.Grown:
-                ApplyWind(weather, neighbor);
+                ApplySun(weather, neighbor);
                 break;
         }
         
         base.DayTick(weather, neighbor);
     }
     
-    void ApplyWind(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
-        if ((int)(weather & Weather.Windy) == 0) return;
-        if (immuneToWind) return;
-        
-        var dir = Tools.WindDirection(weather);
-        var n = neighbor(GridPos, dir.x, dir.y);
-        
-        Harvest();
-        
-        if (!n) return;
-        if (!n.plant) {
-            n.Plant(info);
-        } 
-    }
-    
     void Grow() {
         if (_state != State.Growing) return;
         
         _state = State.Grown;
+        youngView.SetActive(false);
         grownView.SetActive(true);
         grownView.transform.DOScale(Vector3.zero, .5f).From().SetEase(Ease.OutBounce);
+    }
+    
+    void ApplySun(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
+        if (weather != Weather.Sunny) {
+            _timeToExplosion = TTE;
+            return;
+        }
+        
+        if (_timeToExplosion > 0) {
+            _timeToExplosion--;
+            return;
+        }
+        
+        var ns = new[] {
+            neighbor(GridPos, 0, -1),
+            neighbor(GridPos, -1, 0),
+            neighbor(GridPos, 0, 1),
+            neighbor(GridPos, 1, 0)
+        };
+
+        foreach (var n in ns) {
+            if (!n) continue;
+            n.Plant(info);
+        }
+        
+        Destroy(gameObject);
     }
 
     public override void Harvest() {
         base.Harvest();
         
         if (_state != State.Grown) return;
-        
-        // TODO add to the total score
-        _fruitNum--;
-        
-        if (_fruitNum == 0) {
-            _state = State.Dead;
-            // TODO set correct visuals
-            grownView.SetActive(false);
-            youngView.transform.DOScaleX(1, .3f);
-            return;
-        }
-        
-        _state = State.Growing;
-        _timeToGrow = TTG;
-        // TODO add some particle effect
-        grownView.SetActive(false);
+        // TODO add score
+        Destroy(gameObject);
     }
 }

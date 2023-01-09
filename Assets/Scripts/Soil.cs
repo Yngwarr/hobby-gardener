@@ -30,7 +30,7 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void DayTick(Weather weather, Func<Vector2Int, int, int, Soil> neighbor) {
-        if (plant == null) return;
+        if (!plant) return;
         
         plant.DayTick(weather, neighbor);
     }
@@ -44,7 +44,7 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        if (plant == null) {
+        if (!plant) {
             Plant(gameState.selectedSeed);
         } else {
             plant.Harvest();
@@ -54,7 +54,10 @@ public class Soil : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
     }
     
     public void Plant(PlantInfo info) {
-        // TODO utilize the current plant if plant != null
+        if (plant) {
+            Destroy(plant);
+        }
+    
         var go = Instantiate(
             info.plantPrefab,
             transform

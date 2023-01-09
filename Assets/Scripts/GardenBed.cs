@@ -31,10 +31,12 @@ public class GardenBed : MonoBehaviour
     public void DayTick(Weather weather) {
         var bamboos = new Queue<Soil>();
         var berries = new Queue<Soil>();
+        var boommelons = new Queue<Soil>();
+        var cactumbers = new Queue<Soil>();
         
         foreach (var soil in _soils) {
-            if (soil == null) continue;
-            if (soil.plant == null) continue;
+            if (!soil) continue;
+            if (!soil.plant) continue;
             
             switch (soil.plant) {
                 case Bamboo:
@@ -43,9 +45,17 @@ public class GardenBed : MonoBehaviour
                 case Lightberry:
                     berries.Enqueue(soil);
                     break;
+                case Boommelon:
+                    boommelons.Enqueue(soil);
+                    break;
+                case Cactumber:
+                    cactumbers.Enqueue(soil);
+                    break;
             }
         }
 
+        foreach (var soil in cactumbers) soil.DayTick(weather, GetNeighbor);
+        foreach (var soil in boommelons) soil.DayTick(weather, GetNeighbor);
         foreach (var soil in bamboos) soil.DayTick(weather, GetNeighbor);
         foreach (var soil in berries) soil.DayTick(weather, GetNeighbor);
     }

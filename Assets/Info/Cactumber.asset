@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db879231d79428f8302dc03eb2929b7, type: 3}
   m_Name: Cactumber
   m_EditorClassIdentifier: 
-  plantPrefab: {fileID: 919132149155446097, guid: 1d1a36fa27e1ac14d94aed411fa3a8d6,
+  plantPrefab: {fileID: 1825363636515883153, guid: 16385f7fe1d9ca44eb2e036e7e888992,
     type: 3}

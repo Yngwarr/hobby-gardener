@@ -12,7 +12,7 @@ public class Bamboo : Plant
     [SerializeField] GameObject youngView;
     [SerializeField] GameObject grownView;
     
-    const int TTG = 5;
+    const int TTG = 2;
     
     State _state = State.Growing;
     int _timeToGrow = TTG;
@@ -29,7 +29,7 @@ public class Bamboo : Plant
             case State.Growing:
                 if (_timeToGrow > 0) {
                     _timeToGrow--;
-                    return;
+                    break;
                 }
                 
                 Grow();
@@ -61,8 +61,8 @@ public class Bamboo : Plant
         };
         
         foreach (var n in ns) {
-            if (n == null) continue;
-            if (n.plant == null) continue;
+            if (!n) continue;
+            if (!n.plant) continue;
             
             n.plant.immuneToWind = true;
         }
@@ -72,7 +72,7 @@ public class Bamboo : Plant
         base.Harvest();
         
         if (_state != State.Grown) return;
-        
+        // TODO add score
         _state = State.Growing;
         _timeToGrow = TTG;
         grownView.SetActive(false);

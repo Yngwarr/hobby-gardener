@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
         while (state.forecast.Count < ForecastLength) {
             // TODO make something more predictable
             state.forecast.Enqueue(Tools.RandomWeather());
+            // state.forecast.Enqueue(Weather.Sunny);
         }
         Debug.Log($"{state.forecast.Peek()}");
     }
